@@ -8,6 +8,7 @@
   <div class="d-flex flex-column bd-highlight mb-3">
     <div class="mx-auto col-md-8">
       <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+        <%= render "admin/shared/error_messages", resource: resource %>
         <div class="form-group form-inline">
           <%= f.label :メールアドレス, class: "col-sm-3" %>
           <div class="col-sm-9">
