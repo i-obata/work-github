@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     
     # サインイン後の遷移先
     def after_sign_in_path_for(resource)
-        homes_about_path
+        customers_path
     end
     
     # サインアウト後の遷移先
