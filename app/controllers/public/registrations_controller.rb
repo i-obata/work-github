@@ -11,7 +11,13 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    @customer = Customer.new(book_params)
+    if @book.save
+      flash[:notice] = "successfully submitted the book!"
+      redirect_to customers_path
+    else
+      render :new
+    end
   end
 
   # GET /resource/edit

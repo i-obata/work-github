@@ -1,15 +1,26 @@
 Rails.application.routes.draw do
+
+  # 顧客用（public）  
+  scope module: :public do
+    
+    #homesコントローラー 
+    # root to: "homes#top"
+    get "homes/about" => "public/homes#about"
+
+    #devise（registrationsコントローラー、sessionsコントローラー）
+    devise_for :customers, skip: [:passwords],controllers: {
+      registrations: "public/registrations",
+      sessions: 'public/sessions'
+    }
+    
+    # customersコントローラー
+    resource :customers, only:[:show, :edit, :update]
+    get "customers/confirm_withdraw" => "customer#confirm_withdraw"
+    patch "customers/withdraw"
+  end
+   
   
-  #homesコントローラー 
-  # root to: "homes#top"
-  get "homes/about" => "public/homes#about"
   
-  # 顧客用
-  # URL /customers/sign_in ...
-  devise_for :customers, skip: [:passwords],controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
   
   # 管理者用
   # URL /admin/sign_in ...
