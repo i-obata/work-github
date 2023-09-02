@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <h4 class="p-3 mb-2 bg-transparent text-dark">商品一覧</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <table border=4 class="table">
+                <tbody>
+                    <tr>
+                        <% @items.each do |item| %>
+                            <td>
+                                <%= link_to item_path(item.id) %>
+                                    <%= image_tag item.get_image %>
+                                    <%= item.name %>
+                                    <%= item.price %>
+                                <% end %>
+                            </td>
+                        <% end %>
+                    <tr>
+                    <%= paginate items %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

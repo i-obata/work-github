@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <h4 class="p-3 mb-2 bg-transparent text-dark">商品詳細</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <%= image_tag @item.get_image %>
+        </div>
+        <div class="d-flex flex-column mb-3">
+            <%= form_with model: @item do |f| %>
+            
+                <div class="form-group form-inline">
+                    <div class="col-md-3">商品名</div>
+                    <div class="col-md-3"><%= f.name %></div>
+                </div>
+                
+                <div class="form-group form-inline">
+                    <div class="col-md-3">商品説明</div>
+                    <div class="col-md-3"><%= f.introduction %></div>
+                </div>
+                
+                <div class="form-group form-inline">
+                    <div class="col-md-3">税込価格</br>(税抜価格)</div>
+                    <div class="col-md-3"><%= f.price %></div>
+                </div>
+
+            <% end %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-center">
+            <button type="button" class="btn btn-success ml-5">
+                <%= link_to "編集する", edit_admin_item_path, class: "text-light text-decoration-none" %>
+            </button>
+        </div>
+    </div>
+</div>

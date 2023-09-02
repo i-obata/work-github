@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     # root to: "homes#top"
     get "/about" => "homes#about"
     
+    # itemsコントローラー
+    resources :items, only:[:index, :show]
+    
     # customersコントローラー
     resource :customers, only:[:show, :edit, :update]
     get "customers/confirm_withdraw" => "customers#confirm_withdraw"

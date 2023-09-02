@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <h4 class="p-3 mb-2 bg-transparent text-dark">商品一覧</h4>
+            
+            <%= link_to new_admin_item_path  method: :get do %>
+                <i class="fa-thin fa-circle-plus"></i>
+            <% end %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"><strong>商品ID</strong></th>
+                        <th scope="col"><strong>商品名</strong></th>
+                        <th scope="col"><strong>税抜価格</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @items.each do |item| %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><%= link_to item.name, admin_item_path(item.id) %></td>
+                            <td><%= item.price %></td>
+                        <tr>
+                        <%= paginate items %>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
