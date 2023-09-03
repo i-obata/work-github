@@ -9,13 +9,17 @@
                 <div class="col"><%= f.name %></div>
                 <div class="col-md-3"><%= f.introduction %></div>
 
-                <div class="col-md-3">￥<%= f.price %>(税込)</div>
+                <div class="col-md-3">￥
+                    <%= f.price + f.price * 0.1 %>
+                    (税込)
+                </div>
 
             <% end %>
         </div>
     </div>
     <div class="row">
         <div class="col-center">
+            <!--個数選択のドロップダウンリスト選択-->
             <button type="button" class="btn btn-success ml-5">
                 <%= link_to "カートに入れる", edit__item_path, class: "text-light text-decoration-none" %>
             </button>
