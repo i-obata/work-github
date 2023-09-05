@@ -14,7 +14,14 @@ Rails.application.routes.draw do
     resource :customers, only:[:show, :edit, :update]
     get "customers/confirm_withdraw" => "customers#confirm_withdraw"
     patch "customers/withdraw"
-
+    
+    # addressesコントローラー
+    resources :addresses, only:[:create, :index, :edit, :update, :destroy]
+    
+    # cart_itemsコントローラー
+    resource :cart_items, only:[:create, :index, :update, :destroy]
+    delete "cart_items/destroy_all"
+  
     #devise（registrationsコントローラー、sessionsコントローラー）
     devise_for :customers, skip: [:passwords],controllers: {
       registrations: "public/registrations",
