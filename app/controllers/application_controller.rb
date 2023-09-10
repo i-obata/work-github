@@ -2,12 +2,16 @@ class ApplicationController < ActionController::Base
     
     before_action :configure_permitted_parameters, if: :devise_controller?
     
-    # サインイン後の遷移先
+    # =================================================================================
+    # サインイン後の遷移先：顧客のマイページ画面
+    # =================================================================================
     def after_sign_in_path_for(resource)
         customers_path
     end
     
-    # サインアウト後の遷移先
+    # =================================================================================
+    # サインアウト後の遷移先：アバウト画面
+    # =================================================================================
     def after_sign_out_path_for(resource)
         homes_about_path
     end
