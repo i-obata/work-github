@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <h4 class="p-3 mb-2 bg-transparent text-dark">注文情報入力</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <%= form_with model: @order do |f| %>
+                
+                <p5><strong>支払方法</strong></p5>
+                <div class="form-group form-inline">
+                    <%= f.radio_button :payment, Order.payment.key(0) %>
+                    <%= f.label :payment_credit_card, Order.payment_i18n[:credit_card] %>
+                </div>
+            
+                <div class="form-group form-inline">
+                    <%= f.radio_button :payment, Order.payment.key(1) %>
+                    <%= f.label :payment_transfer, Order.payment_i18n[:transfer]%>
+                </div>
+                
+                <p5><strong>お届け先</strong></p5>
+                <div class="form-group form-inline">
+                    <%= f.radio_button :select_address, "ご自身の住所", "〒" + current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name %></br>
+                    〒<%= current_customer.postal_code %> <%= current_customer.address %></br>
+                    <%= current_customer.last_name + " " + current_customer.first_name %>
+                </div>
+                
+                <div class="form-group form-inline">
+                    <%= f.radio_button :select_address, "登録済住所から選択" %></br>
+                    <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+                </div>
+                
+                <div class="form-group form-inline">
+                    <%= f.radio_button :select_address, "新しいお届け先" %></br>
+                    <div class="col-md-3">郵便番号（ハイフンなし）</div>
+                    <div class="col-md-3"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></div></br>
+                    <div class="col-md-3">住所</div>
+                    <div class="col-md-3"><%= f.text_field :address, autofocus: true, autocomplete: "address" %></div></br>
+                    <div class="col-md-3">宛先</div>
+                    <div class="col-md-3"><%= f.text_field :destination, autofocus: true, autocomplete: "destination" %></div></br>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
