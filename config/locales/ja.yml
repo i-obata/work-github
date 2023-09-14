@@ -6,6 +6,14 @@ ja:
             payment:
                 credit_card: "クレジットカード"
                 transfer: "銀行振込"
+                
+            # 注文ステータス
+            status:
+                awaiting_payment: "入金待ち"
+                payment_confirmation: "入金確認"
+                under_manufacture: "製作中"
+                preparing_ship: "発送準備中"
+                shipped: "発送済"
     
     # 以下translation missing対応
     activerecord:

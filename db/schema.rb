@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2023_09_05_012647) do
     t.integer "order_id", null: false
     t.integer "amount", null: false
     t.integer "price_including_tax", null: false
-    t.integer "produce_status", null: false
+    t.integer "produce_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -84,10 +84,10 @@ ActiveRecord::Schema.define(version: 2023_09_05_012647) do
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "destination", null: false
-    t.integer "payment", null: false
+    t.integer "payment", default: 0, null: false
     t.integer "total_cost", null: false
     t.integer "postage", null: false
-    t.string "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
