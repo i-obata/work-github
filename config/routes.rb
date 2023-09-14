@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   
   namespace :admin do
     
+    # homesコントローラー
+    root to: "homes#top"
+    
     # itemsコントローラー
     resources :items, only:[:new, :create, :index, :show, :edit, :update]
     
