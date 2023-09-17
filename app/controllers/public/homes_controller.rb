@@ -4,6 +4,7 @@ class Public::HomesController < ApplicationController
     # トップページ画面（GETアクション）
     # =================================================================================
     def top
+        @items = Item.order(updated_at: :desc).first(4)
     end
 
     # =================================================================================

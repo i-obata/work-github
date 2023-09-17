@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   scope module: :public do
     
     #homesコントローラー 
-    # root to: "homes#top"
+    root to: "homes#top"
     get "/about" => "homes#about"
     
     # itemsコントローラー
