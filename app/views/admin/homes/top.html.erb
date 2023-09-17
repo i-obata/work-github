@@ -4,4 +4,30 @@
             <h4 class="p-3 mb-2 bg-transparent text-dark">注文履歴一覧</h4>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"><strong>購入日時</strong></th>
+                        <th scope="col"><strong>購入者</strong></th>
+                        <th scope="col"><strong>注文個数</strong></th>
+                        <th scope="col"><strong>注文ステータス</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @order.each do |order| %>
+                        <tr>
+                            <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+                            <td><%= order.includes(:customer).last_name + order.includes(:customer).first_name %></td>
+                            <td><%= order.total_amount %></td>
+                            <td><%= order.status %></td>
+                        <tr>
+                        <%= paginate orders %>
+                    <% end %>
+                </tbody>
+            </table>
+        
+        </div>
+    </div>
 </div>

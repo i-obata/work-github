@@ -14,6 +14,16 @@ ja:
                 under_manufacture: "製作中"
                 preparing_ship: "発送準備中"
                 shipped: "発送済"
+                
+        order_item:
+            
+            # 製作ステータス
+            status:
+                cannot_be_started: "着手不可"
+                awaiting_manufacture: "製作待ち"
+                under_manufacture: "製作中"
+                complete: "製作完了"
+                
     
     # 以下translation missing対応
     activerecord:

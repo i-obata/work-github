@@ -5,7 +5,7 @@ class Item < ApplicationRecord
     
     # 税込価格取得メソッド
     def with_tax_price
-        (price * 1.1).floor
+        return (price * 1.1).floor
     end
     
     # 画像取得メソッド
