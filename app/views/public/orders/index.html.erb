@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <h4 class="p-3 mb-2 bg-transparent text-dark">注文履歴一覧</h4>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col-1"><strong>注文日</strong></th>
+                    <th scope="col-6"><strong>配送先</strong></th>
+                    <th scope="col-2"><strong>注文商品</strong></th>
+                    <th scope="col-1"><strong>支払金額</strong></th>
+                    <th scope="col-1"><strong>ステータス</strong></th>
+                    <th scope="col-1"><strong>注文詳細</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @order.each do |order| %>
+                    <tr>
+                        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+                        <td>〒<%= order.postal_code %> </br> <%= order.address %> </br> <%= order.destination %></td>
+                        <td><%= order.items_all %></td>
+                        <td><%= order.total_cost %>円</td>
+                        <td><%= order.status_method %></td>
+                        <td>
+                            <button type="button" class="btn btn-primary">
+                                <%= link_to "表示する", order_path{order.id}, class: "text-light text-decoration-none" %>
+                            </button> 
+                        </td>
+                    <tr>
+                    <%= paginate orders %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

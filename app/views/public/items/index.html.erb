@@ -8,18 +8,17 @@
         <div class="col-md-8 offset-md-1">
             <table border=4 class="table">
                 <tbody>
-                    <tr>
-                        <% @items.each do |item| %>
+                    <% @items.each do |item| %>
+                        <tr>
                             <td>
                                 <%= link_to item_path(item.id) %>
                                     <%= image_tag item.get_image %>
                                     <%= item.name %>
                                     <%= item.price %>
-                                <% end %>
                             </td>
-                        <% end %>
-                    <tr>
-                    <%= paginate items %>
+                        <tr>
+                    <% end %>
+                    <%= paginate @items %>
                 </tbody>
             </table>
         </div>

@@ -52,6 +52,9 @@ Rails.application.routes.draw do
     
     # customersコントローラー
     resources :customers, only:[:index, :show, :edit, :update]
+    
+    # ordersコントローラー
+    resources :orders, only:[:show, :update]
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

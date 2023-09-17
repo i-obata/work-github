@@ -70,12 +70,14 @@ class Public::OrdersController < ApplicationController
     # 注文履歴画面（GETアクション）
     # =================================================================================
     def index
+        @order = Order.where(customer_id: current_customer.id).order(created_at: :desc)
     end
 
     # =================================================================================
     # 注文履歴詳細（GETアクション）
     # =================================================================================
     def show
+        @order = Order.find(params[:id])
     end
     
     private
