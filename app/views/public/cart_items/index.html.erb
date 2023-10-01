@@ -24,7 +24,7 @@
                 <tbody>
                     <% @cart_item.each do |cart_item| %>
                         <tr>
-                            <td><%= image_tag cart_item.item.get_image %><%= cart_item.item.name %></td>
+                            <td><%= image_tag cart_item.item.get_profile_image(50,50) %><%= cart_item.item.name %></td>
                             <td><%= cart_item.item.with_tax_price %></td>
                             <td>
                                 <%= cart_item.select :amount, [1..100] %>

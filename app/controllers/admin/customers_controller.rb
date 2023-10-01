@@ -1,10 +1,13 @@
 class Admin::CustomersController < ApplicationController
     
+    before_action :authenticate_admin!
+    
     # =================================================================================
     # 顧客一覧画面（GETアクション）
     # =================================================================================
     def index
-        @customers = Customer.page(params[:page])
+        @customers = Customer.all
+        @customers = @customers.page(params[:page])
     end
     
     # =================================================================================
@@ -27,7 +30,6 @@ class Admin::CustomersController < ApplicationController
     def update
         customer = Customer.find(params[:id])
         if customer.update(customer_params)
-        flash[:notice] = "successfully edited the user!"
             redirect_to admin_customer_path(customer.id)
         else
             render :edit
@@ -41,6 +43,6 @@ class Admin::CustomersController < ApplicationController
     # 姓、名、姓カナ、名カナ、メールアドレス、郵便番号、住所、電話番号が更新可能
     # =================================================================================
     def customer_params
-        params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number)
+        params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_deleted)
     end
 end

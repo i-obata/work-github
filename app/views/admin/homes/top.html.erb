@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% @order.each do |order| %>
+                    <% @orders.each do |order| %>
                         <tr>
                             <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
                             <td><%= order.includes(:customer).last_name + order.includes(:customer).first_name %></td>
@@ -27,7 +27,6 @@
                     <% end %>
                 </tbody>
             </table>
-        
         </div>
     </div>
 </div>

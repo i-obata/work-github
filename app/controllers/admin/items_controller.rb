@@ -1,5 +1,7 @@
 class Admin::ItemsController < ApplicationController
     
+    before_action :authenticate_admin!
+    
     # =================================================================================
     # 商品新規登録画面（GETアクション）
     # =================================================================================
@@ -24,6 +26,7 @@ class Admin::ItemsController < ApplicationController
     # 商品一覧画面（GETアクション）
     # =================================================================================
     def index
+        # reset_session
         @items = Item.page(params[:page])
     end
     
@@ -61,6 +64,6 @@ class Admin::ItemsController < ApplicationController
     # 商品名、商品説明文、税抜価格が更新可能
     # =================================================================================
     def item_params
-        params.require(:item).permit(:name, :introduction, :price)
+        params.require(:item).permit(:name, :introduction, :price, :profile_image)
     end
 end

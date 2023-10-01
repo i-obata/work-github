@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :addresses, only:[:create, :index, :edit, :update, :destroy]
     
     # cart_itemsコントローラー
-    resource :cart_items, only:[:create, :index, :update, :destroy]
+    resources :cart_items, only:[:create, :index, :update, :destroy]
     delete "cart_items/destroy_all"
     
     # ordersコントローラー
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
+  get "/admin" => "admin/homes#top", as: "admin"
   namespace :admin do
     
     # homesコントローラー
@@ -55,6 +56,9 @@ Rails.application.routes.draw do
     
     # ordersコントローラー
     resources :orders, only:[:show, :update]
+    
+    # order_itemsコントローラー
+    resources :order_items, only:[:update]
 
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

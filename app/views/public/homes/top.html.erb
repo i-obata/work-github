@@ -1,34 +1,27 @@
 <div class="container">
-    <div class="row">
-        <div class="d-flex flex-column">
-            <h4 class="font-weight-normal text-center">ようこそ、ながのCAKEへ！</br>
-                このサイトは、ケーキ販売のECサイトになります。</br>
-                会員でない方も商品の閲覧はできますが、</br>
-                購入には会員登録が必要になります。
-            </h4>
-        </div>
+    <div class="d-flex flex-column">
+        <h4 class="font-weight-normal text-center">ようこそ、ながのCAKEへ！</br>
+            このサイトは、ケーキ販売のECサイトになります。</br>
+            会員でない方も商品の閲覧はできますが、</br>
+            購入には会員登録が必要になります。
+        </h4>
     </div>
     <div class="row">
-        <div class="col-md-8 offset-md-1">
-            <h4>新着商品</h4>
-            <table border=4 class="table">
-                <tbody>
-                    <% @items.each do |item| %>
-                        <tr>
-                            <td>
-                                <%= link_to item_path(item.id) %>
-                                    <%= image_tag item.get_image %>
-                                    <%= item.name %>
-                                    <%= item.price %>
-                            </td>
-                        <tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
+        <h4 class="col-md-8 offset-md-1"><strong>新着商品</strong></h4>
+        <div class='col-md-12 d-flex flex-wrap justify-content-center'>
+            <% @items.each do |item| %>
+                <%= link_to item_path(item.id) do %>
+                    <div class="d-flex flex-column bd-highlight mb-3 mr-5">
+                        <%= image_tag item.get_profile_image(150,150) %>
+                        <%= item.name %></br>
+                        ￥<%= item.price %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div> 
     </div>
     <div class="row">
-        <div class="col text-end">
+        <div class="col-md-8 offset-md-1 text-end">
             <%= link_to "すべての商品を見る＞", items_path %>
         </div>
     </div>

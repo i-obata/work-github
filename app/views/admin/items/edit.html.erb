@@ -4,27 +4,27 @@
       <h4 class="p-3 mb-2 bg-transparent text-dark">商品編集</h4>
     </div>
   </div>
-  <%= form_with model: @item, url: admin_items_path,  method: :patch do |f| %>
+  <%= form_with model: @item, url: admin_item_path(@item.id),  method: :patch do |f| %>
     <div class="d-flex flex-column mb-3">
     　
-    　<div class="form-group">
-        <%= f.label :Image %><br />
-        <%= f.file_field :profile_image, accept: "image/*" %>
+    　<div class="form-group form-inline">
+        <div class="col-md-3">商品画像</div>
+        <div class="col-md-6"><%= f.file_field :profile_image, accept: "image/*", class: "w-100" %></div>
     　</div>
     　
       <div class="form-group form-inline">
         <div class="col-md-3">商品名</div>
-        <div class="col-md-3"><%= f.text_field :name, autofocus: true, autocomplete: "name" %></div>
+        <div class="col-md-6"><%= f.text_field :name, :size=>"40", autofocus: true, autocomplete: "name" %></div>
       </div>
     
       <div class="form-group form-inline">
         <div class="col-md-3">商品説明</div>
-        <div class="col-md-3"><%= f.text_area :introduction, class: "form-control", style: "width:100%" %></div>
+        <div class="col-md-6"><%= f.text_area :introduction, :size=>"40x7", class: "form-control" %></div>
       </div>
 
       <div class="form-group form-inline">
         <div class="col-md-3">税抜価格</div>
-        <div class="col-md-3"><%= f.text_field :price, autofocus: true, autocomplete: "postal_code" %>円</div>
+        <div class="col-md-6"><%= f.text_field :price, :size=>"40", autofocus: true, autocomplete: "postal_code" %>円</div>
       </div>
 
     <div class="d-flex justify-content-around mb-3">      
