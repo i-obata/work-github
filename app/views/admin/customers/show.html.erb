@@ -1,68 +1,61 @@
 <div class="container">
-    <%= form_with model: @Customer do |f| %>
-        <div class="row">
-            <div class="col-md-8 offset-md-1">
-                <h4 class="p-3 mb-2 bg-transparent text-dark"><%= f.last_name & f.first_name %>さんの会員詳細</h4>
-            </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <h4 class="p-3 mb-2 bg-transparent text-dark"><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h4>
         </div>
-        <div class="row">
-            <div class="d-flex flex-column mb-3">
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">会員ID</div>
-                    <div class="col-md-3"><%= f.id %></div>
-                </div>
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">氏名</div>
-                    <div class="col-md-3"><%= f.last_name & " " & f.first_name %></div>
-                </div>
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">フリガナ</div>
-                    <div class="col-md-3"><%= f.last_name_kana & " " & f.first_name_kana %></div>
-                </div>
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">郵便番号</div>
-                    <div class="col-md-3"><%= f.postal_code %></div>
-                </div>
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">住所</div>
-                    <div class="col-md-3"><%= f.address %></div>
-                </div>
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">電話番号</div>
-                    <div class="col-md-3"><%= f.telephone_number %></div>
-                </div>
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">メールアドレス</div>
-                    <div class="col-md-3"><%= f.email %></div>
-                </div>
-                
-                <div class="form-group form-inline">
-                    <div class="col-md-3">会員ステータス</div>
-                    <%= if f.is_deleted == false %>
-                        <div class="col-md-3 text-success">有効</div>
-                    <% else %>
-                        <div class="col-md-3 text-secondary">退会</div>
-                    <% end %>
-                </div>
-            </div>
+    </div>
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">会員ID</div>
+        <div class="col"><%= @customer.id %></div>
+    </div>
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">氏名</div>
+        <div class="col-md"><%= @customer.last_name + " " + @customer.first_name %></div>
+    </div>
+            
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">フリガナ</div>
+        <div class="col"><%= @customer.last_name_kana + " " + @customer.first_name_kana %></div>
+    </div>
+            
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">郵便番号</div>
+        <div class="col"><%= @customer.postal_code %></div>
+    </div>
+            
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">住所</div>
+        <div class="col"><%= @customer.address %></div>
+    </div>
+            
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">電話番号</div>
+        <div class="col"><%= @customer.telephone_number %></div>
+    </div>
+            
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">メールアドレス</div>
+        <div class="col"><%= @customer.email %></div>
+    </div>
+            
+    <div class="form-group form-inline">
+        <div class="col-md-2 offset-md-1">会員ステータス</div>
+        <% if @customer.is_deleted == false %>
+            <div class="col text-success">有効</div>
+        <% else %>
+            <div class="col text-secondary">退会</div>
+        <% end %>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col">
+            <button type="button" class="btn btn-success">
+                <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "text-light text-decoration-none" %>
+            </button>
+            
+            <button type="button" class="btn btn-primary">
+                <%= link_to "注文履歴一覧を見る", admin_path, class: "text-light text-decoration-none" %>
+            </button>
         </div>
-        <div class="row justify- content-center">
-            <div class="col">
-                <button type="button" class="btn btn-success">
-                    <%= link_to "編集する", edit_admin_customer_path(f.id), class: "text-light text-decoration-none" %>
-                </button>
-                
-                <button type="button" class="btn btn-primary">
-                    <%= link_to "注文履歴一覧を見る", admin_customers_path, class: "text-light text-decoration-none" %>
-                </button>
-            </div>
-        </div>
-    <% end %>
+    </div>
 </div>

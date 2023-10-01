@@ -12,7 +12,7 @@ class Public::OrdersController < ApplicationController
     # =================================================================================
     def confirm
         
-        @cart_item = Cart_Item.where(customer_id: current_customer.id)
+        @cart_item = CartItem.where(customer_id: current_customer.id)
         @totalprice = 0
         # 新しく住所入力した情報も含めて取得
         @order = Order.new(order_params)

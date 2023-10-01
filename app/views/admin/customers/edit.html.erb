@@ -1,12 +1,12 @@
 <div class="container">
-    <%= form_with model: @customer, url: customers_path,  method: :patch do |f| %>
+    <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
         <div class="row">
             <div class="col-md-8 offset-md-1">
                 <h4 class="p-3 mb-2 bg-transparent text-dark">会員情報編集</h4>
             </div>
         </div>
       
-        <div class="d-flex flex-column mb-3">
+        <!--<div class="d-flex flex-column mb-3">-->
         
             <div class="form-group form-inline">
                 <div class="col-md-3">名前</div>
@@ -42,18 +42,13 @@
             
             <div class="form-group form-inline">
                 <div class="col-md-3">会員ステータス</div>
-                <div class="col-md-3">
-                    <%= f.radio_button :is_deleted, false, disabled: false, autofocus: true, autocomplete: "is_deleted" %> %>
-                    <%= f.label :is_deleted, "有効" %>
-
-                    <%= f.radio_button :is_deleted, true, disabled: false, autofocus: true, autocomplete: "is_deleted" %> %>
-                    <%= f.label :is_deleted, "退会" %>
-                </div>
+                <div class="col-md-2"><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted_false, "有効" %></div>
+                <div class="col-md-2"><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted__true, "退会" %></div>
             </div>
-        </div>
+        <!--</div>-->
         
         <div class="row">
-            <div class="d-flex justify-content-around mb-3">      
+            <div class="d-flex justify-content-around mb-3">
                 <div class="col-sm"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
             </div>
         </div>

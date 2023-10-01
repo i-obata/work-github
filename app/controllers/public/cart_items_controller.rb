@@ -1,11 +1,13 @@
 class Public::CartItemsController < ApplicationController
     
+    before_action :authenticate_customer!
+    
     # =================================================================================
     # カート内商品データ追加処理（POSTアクション）
     # =================================================================================
     def create
-        cart_item = Cart_item.new(cart_item_params)
-        cart_items = Cart_Item.where(customer_id: current_customer.id)
+        cart_item = CartItem.new(cart_item_params)
+        cart_items = CartItem.where(customer_id: current_customer.id)
         
         # 既にカート内に同じ商品が存在する場合
         if cart_items.item.find_by(name: cart_item.item.name)
@@ -33,7 +35,7 @@ class Public::CartItemsController < ApplicationController
     # カート内商品一覧画面（GETアクション）
     # =================================================================================
     def index
-        @cart_items = Cart_Item.where(customer_id: current_customer.id)
+        @cart_items = CartItem.where(customer_id: current_customer.id)
         @totalprice = 0
     end
     
@@ -41,10 +43,10 @@ class Public::CartItemsController < ApplicationController
     # カート内商品データ更新処理（PATCHアクション）
     # =================================================================================
     def update
-        cart_item = Cart_Item.find(params[:id])
+        cart_item = CartItem.find(params[:id])
         if cart_item.update(cart_item_params)
         flash[:notice] = "successfully edited the cart!"
-            @cart_items = Cart_Item.where(customer_id: current_customer.id)
+            @cart_items = CartItem.where(customer_id: current_customer.id)
             render template: "public/cart_items"
         else
             render :index
@@ -55,10 +57,10 @@ class Public::CartItemsController < ApplicationController
     # カート内商品データ削除（1商品）処理（DELETEアクション）
     # =================================================================================
     def destroy
-        cart_item = Cart_Item.find(params[:id])
+        cart_item = CartItem.find(params[:id])
         if cart_item.destroy
             flash[:notice] = "The cart was successfully destroyed."
-            @cart_items = Cart_Item.where(customer_id: current_customer.id)
+            @cart_items = CartItem.where(customer_id: current_customer.id)
             render template: "public/cart_items"
         end
     end
@@ -67,10 +69,10 @@ class Public::CartItemsController < ApplicationController
     # カート内商品データ削除（全商品）処理（DELETEアクション）
     # =================================================================================
     def destroy_all
-        cart_items = Cart_Item.where(customer_id: current_customer.id)
+        cart_items = CartItem.where(customer_id: current_customer.id)
         if cart_items.destroy
             flash[:notice] = "The cart was successfully destroyed all."
-            @cart_items = Cart_Item.where(customer_id: current_customer.id)
+            @cart_items = CartItem.where(customer_id: current_customer.id)
             render template: "public/cart_items"
         end
     end

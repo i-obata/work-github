@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-1">
+            <h4 class="p-3 mb-2 bg-transparent text-dark">注文履歴詳細</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">購入者</div>
+        <div class="col-md-7"><%= link_to Customer.where(id: :@order.customer_id).last_name + " " + Customer.where(id: :@order.customer_id).first_name, admin_customer_path(@order.customer_id) %></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">注文日</div>
+        <div class="col-md-7"><% @order.created_at.strftime('%Y/%m/%d') %></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">配送日</div>
+        <div class="col-md-7">〒<% @order.postal_code %> <%= @order.address %></br><% @order.destination %></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">支払方法</div>
+        <div class="col-md-7"><% @order.payment_method %></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">注文ステータス</div>
+        <%= form_with model: @order do |f| %>
+            <div class="col-md-7"><% f.select :payment, [Order.status_i18n[:awaiting_payment],0],[Order.status_i18n[:payment_confirmation],1],[Order.status_i18n[:under_manufacture],2],[Order.status_i18n[:preparing_ship],3],[Order.status_i18n[:shipped],4] %><%= f.submit "更新", class: "btn btn-success" %></div>
+        <% end %>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><strong>商品名</strong></th>
+                        <th><strong>単価（税込）</strong></th>
+                        <th><strong>数量</strong></th>
+                        <th><strong>小計</strong></th>
+                        <th><strong>製作ステータス</strong></th>
+                        <th colspan = "1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @order.order_items.each do |order_item| %>
+                        <tr>
+                            <td><%= Item.find(order_item.item_id).name %></td>
+                            <td><%= Item.find(order_item.item_id).with_tax_price %></td>
+                            <td><%= order_item.amount %></td>
+                            <td><%= order_item.subtotal_price %></td>
+                            <td>
+                                <% order_item.select :status, [Order_item.status_i18n[:cannot_be_started],0],[Order_item.status_i18n[:awaiting_manufacture],1],[Order_item.status_i18n[:under_manufacture],2],[Order_item.status_i18n[:complete],3] %>
+                            </td>
+                            <td><%= order_item.submit "更新", class: "btn btn-success" %></td>
+                        <tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2">
+            <p><strong>商品合計</strong></br><strong>送料</strong></br><strong>請求金額合計</strong></p>
+        </div>
+        <div class="col-2">
+            <p><% @order.total_cost - @order.postage %>円</br><% @order.postage %>円</br><strong><% @order.total_cost %>円</strong></p>
+        </div>
+    </div>
+</div>
