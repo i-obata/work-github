@@ -6,9 +6,10 @@ class Public::AddressesController < ApplicationController
     def create
         @address = Address.new(address_params)
         @address.customer_id = current_customer.id
-        if @book.save
+        if @address.save
             flash[:notice] = "successfully submitted the book!"
         end
+        @addresses = Address.all 
         render :index
     end
 
@@ -47,8 +48,10 @@ class Public::AddressesController < ApplicationController
         address =Address.find(params[:id])
         if address.destroy
             flash[:notice] = "The address was successfully destroyed."
-            render :index
         end
+        @addresses = Address.all
+        @address = Address.new
+        render :index
     end
     
     private

@@ -24,13 +24,13 @@ class Public::SessionsController < Devise::SessionsController
   def customer_state
     
     # emailからアカウントを1件取得
-    @customer = Customer.find_by(email: params[:customer][email])
+    @customer = Customer.find_by(email: params[:customer][:email])
     
     # アカウントが取得できなかった場合、メソッド終了
     return if !@customer
     
     # パスワードと退会ステータス判定
-    if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted == false
+    if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted == true
       redirect_to new_customer_registration_path
     end
   end
