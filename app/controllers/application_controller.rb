@@ -9,9 +9,8 @@ class ApplicationController < ActionController::Base
         
         if admin_signed_in?
             admin_root_path
-            
         elsif customer_signed_in?
-            root_path
+            customers_path
         end
     end
     
@@ -19,7 +18,13 @@ class ApplicationController < ActionController::Base
     # サインアウト後の遷移先
     # =================================================================================
     def after_sign_out_path_for(resource)
-        root_path
+        
+        if resource == :admin
+            new_admin_session_path
+        elsif resource == :customer
+            root_path
+        end
+         
     end
     
     # =================================================================================

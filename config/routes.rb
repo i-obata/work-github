@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     
     # cart_itemsコントローラー
     resources :cart_items, only:[:create, :index, :update, :destroy]
-    delete "cart_items/destroy_all"
+    delete :cart_items, to: "cart_items#destroy_all"
     
     # ordersコントローラー
     resources :orders, only:[:new, :create, :index, :show]

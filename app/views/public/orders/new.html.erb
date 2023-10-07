@@ -10,18 +10,18 @@
                 
                 <p5><strong>支払方法</strong></p5>
                 <div class="form-group form-inline">
-                    <%= f.radio_button :payment, Order.payment.key(0) %>
-                    <%= f.label :payment_credit_card, Order.payment_i18n[:credit_card] %>
+                    <%= f.radio_button :payments, Order.payments.key(0) %>
+                    <%= f.label :payment_credit_card, Order.payments_i18n[:credit_card] %>
                 </div>
             
                 <div class="form-group form-inline">
-                    <%= f.radio_button :payment, Order.payment.key(1) %>
-                    <%= f.label :payment_transfer, Order.payment_i18n[:transfer]%>
+                    <%= f.radio_button :payments, Order.payments.key(1) %>
+                    <%= f.label :payment_transfer, Order.payments_i18n[:transfer]%>
                 </div>
                 
                 <p5><strong>お届け先</strong></p5>
                 <div class="form-group form-inline">
-                    <%= f.radio_button :select_address, "ご自身の住所", "〒" + current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name %></br>
+                    <%= f.radio_button :select_address, "〒" + current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name %>ご自身の住所</br>
                     〒<%= current_customer.postal_code %> <%= current_customer.address %></br>
                     <%= current_customer.last_name + " " + current_customer.first_name %>
                 </div>

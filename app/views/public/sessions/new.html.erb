@@ -11,7 +11,7 @@
   </div>
   <div class="d-flex flex-column bd-highlight mb-3">
     <div class="mx-auto col-md-8">
-      <%= form_with model: @customer, url: admin_session_path, local: true do |f| %>
+      <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
         
         <div class="form-group form-inline">
           <%= f.label :メールアドレス, class: "col-sm-3" %>

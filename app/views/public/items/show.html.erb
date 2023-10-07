@@ -8,6 +8,8 @@
             <h6><%= @item.introduction %></h6></br>
             <h6>￥<%= @item.with_tax_price %>(税込)</h6></br>
             <%= form_with model: @cart_item do |f| %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.hidden_field :customer_id, :value => current_customer.id %>
                 <%= f.select :amount, *[1..10] %>
                 <button type="button" class="btn btn-success ml-5">
                     <%= f.submit "カートに入れる", class: "btn btn-success" %>
