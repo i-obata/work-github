@@ -6,7 +6,9 @@ class Public::CartItemsController < ApplicationController
     # カート内商品データ追加処理（POSTアクション）
     # =================================================================================
     def create
+        
         cart_item = CartItem.new(cart_item_params)
+        cart_item.customer_id = current_customer.id
         cart_items = CartItem.where(customer_id: current_customer.id)
         
         # 既にカート内に同じ商品が存在する場合

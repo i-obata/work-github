@@ -6,7 +6,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">購入者</div>
-        <div class="col-md-7"><%= link_to Customer.where(id: :@order.customer_id).last_name + " " + Customer.where(id: :@order.customer_id).first_name, admin_customer_path(@order.customer_id) %></div>
+        <div class="col-md-7"><%= link_to @order.customer.last_name + " " + @order.customer.first_name, admin_customer_path(@order.customer_id) %></div>
     </div>
     <div class="row">
         <div class="col-md-5">注文日</div>
@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-5">注文ステータス</div>
         <%= form_with model: @order do |f| %>
-            <div class="col-md-7"><% f.select :payment, [Order.status_i18n[:awaiting_payment],0],[Order.status_i18n[:payment_confirmation],1],[Order.status_i18n[:under_manufacture],2],[Order.status_i18n[:preparing_ship],3],[Order.status_i18n[:shipped],4] %><%= f.submit "更新", class: "btn btn-success" %></div>
+            <div class="col-md-7"><% f.select :status, [Order.statuses_i18n[:awaiting_payment], Order.statuses_i18n[:payment_confirmation], Order.statuses_i18n[:under_manufacture], Order.statuses_i18n[:preparing_ship], Order.statuses_i18n[:shipped] ] %><%= f.submit "更新", class: "btn btn-success" %></div>
         <% end %>
     </div>
     <div class="row">
@@ -47,7 +47,7 @@
                             <td><%= order_item.amount %></td>
                             <td><%= order_item.subtotal_price %></td>
                             <td>
-                                <% order_item.select :status, [Order_item.status_i18n[:cannot_be_started],0],[Order_item.status_i18n[:awaiting_manufacture],1],[Order_item.status_i18n[:under_manufacture],2],[Order_item.status_i18n[:complete],3] %>
+                                <% order_item.select :status, [Order_item.statuses_i18n[:cannot_be_started],0],[Order_item.statuses_i18n[:awaiting_manufacture],1],[Order_item.statuses_i18n[:under_manufacture],2],[Order_item.statuses_i18n[:complete],3] %>
                             </td>
                             <td><%= order_item.submit "更新", class: "btn btn-success" %></td>
                         <tr>

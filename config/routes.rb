@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     # ordersコントローラー
     resources :orders, only:[:new, :create, :index, :show]
     post "orders/confirm"
-    post "orders/complete"
+    get "orders/complete" => "public/orders#complete"
   
     #devise（registrationsコントローラー、sessionsコントローラー）
     devise_for :customers, skip: [:passwords],controllers: {

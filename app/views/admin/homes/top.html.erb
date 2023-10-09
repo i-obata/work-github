@@ -19,12 +19,12 @@
                     <% @orders.each do |order| %>
                         <tr>
                             <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
-                            <td><%= order.includes(:customer).last_name + order.includes(:customer).first_name %></td>
+                            <td><%= order.customer.last_name + order.customer.first_name %></td>
                             <td><%= order.total_amount %></td>
                             <td><%= order.status %></td>
                         <tr>
-                        <%= paginate orders %>
                     <% end %>
+                    <%= paginate @orders %>
                 </tbody>
             </table>
         </div>
