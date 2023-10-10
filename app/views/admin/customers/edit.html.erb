@@ -1,56 +1,52 @@
 <div class="container">
     <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
-        <div class="row">
-            <div class="col-md-8 offset-md-1">
+        <div class="d-flex flex-column mb-3">
+            <div class="row">
+                <div class="col-md-8 offset-md-1">
                 <h4 class="p-3 mb-2 bg-transparent text-dark">会員情報編集</h4>
-            </div>
-        </div>
-      
-        <!--<div class="d-flex flex-column mb-3">-->
-        
-            <div class="form-group form-inline">
-                <div class="col-md-3">名前</div>
-                <div class="col-md-3"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></div>
-                <div class="col-md-3"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></div>
-            </div>
-        
-            <div class="form-group form-inline">
-                <div class="col-md-3">フリガナ</div>
-                <div class="col-md-3"><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %></div>
-                <div class="col-md-3"><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %></div>
-            </div>
-    
-            <div class="form-group form-inline">
-                <div class="col-md-3">郵便番号</div>
-                <div class="col-md-3"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></div>
-            </div>
-    
-            <div class="form-group form-inline">
-                <div class="col-md-3">住所</div>
-                <div class="col-md-3"><%= f.text_field :address, autofocus: true, autocomplete: "address" %></div>
-            </div>
-          
-            <div class="form-group form-inline">
-                <div class="col-md-3">電話番号</div>
-                <div class="col-md-3"><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %></div>
-            </div>
-          
-            <div class="form-group form-inline">
-                <div class="col-md-3">メールアドレス</div>
-                <div class="col-md-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+                </div>
             </div>
             
-            <div class="form-group form-inline">
-                <div class="col-md-3">会員ステータス</div>
-                <div class="col-md-2"><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted_false, "有効" %></div>
-                <div class="col-md-2"><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted__true, "退会" %></div>
+            <div class="row mb-3">
+                <div class="col-md-3">名前</div>
+                <div class="col-md-3"><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %></div>
+                <div class="col"><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %></div>
             </div>
-        <!--</div>-->
         
-        <div class="row">
-            <div class="d-flex justify-content-around mb-3">
-                <div class="col-sm"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+            <div class="row mb-3">
+                <div class="col-md-3">フリガナ</div>
+                <div class="col-md-3"><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %></div>
+                <div class="col"><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %></div>
             </div>
+    
+            <div class="row mb-3">
+                <div class="col-md-3">郵便番号</div>
+                <div class="col"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></div>
+            </div>
+    
+            <div class="row mb-3">
+                <div class="col-md-3">住所</div>
+                <div class="col"><%= f.text_field :address, autofocus: true, autocomplete: "address" %></div>
+            </div>
+          
+            <div class="row mb-3">
+                <div class="col-md-3">電話番号</div>
+                <div class="col"><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %></div>
+            </div>
+          
+            <div class="row mb-3">
+                <div class="col-md-3">メールアドレス</div>
+                <div class="col"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-3">会員ステータス</div>
+                <div class="col-md-1"><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted_false, "有効" %></div>
+                <div class="col"><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted__true, "退会" %></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md text-center"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
         </div>
     <% end %>
 </div>

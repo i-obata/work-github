@@ -21,12 +21,16 @@
                     <tr>
                         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
                         <td>〒<%= order.postal_code %> </br> <%= order.address %> </br> <%= order.destination %></td>
-                        <td><%= order.items_all %></td>
+                        <td>
+                            <% order.order_items.each do |order_item| %>
+                                <%= Item.where(id: order_item.item_id).first.name %></br>
+                            <% end %>
+                        </td>
                         <td><%= order.total_cost %>円</td>
                         <td><%= order.status_method %></td>
                         <td>
                             <button type="button" class="btn btn-primary">
-                                <%= link_to "表示する", order_path{order.id}, class: "text-light text-decoration-none" %>
+                                <%= link_to "表示する", order_path(order.id), class: "text-light text-decoration-none" %>
                             </button> 
                         </td>
                     <tr>

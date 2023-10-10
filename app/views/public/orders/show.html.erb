@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-8">
             <div class="d-flex flex-column mb-3">
-                <h6>注文情報</h6>
+                <h6><strong>注文情報</strong></h6>
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
@@ -23,8 +23,8 @@
                             <td><%= @order.payment_method %></td>
                         </tr>
                         <tr>
-                            <td>支払方法</td>
-                            <td><%= @order.payment_method %></td>
+                            <td>ステータス</td>
+                            <td><%= @order.status_method %></td>
                         </tr>
                     </tbody>
                 </table>
@@ -32,7 +32,7 @@
         </div>
         <div class="col-4">
             <div class="d-flex flex-column mb-3">
-                <h6>請求情報</h6>
+                <h6><strong>請求情報</strong></h6>
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
@@ -53,22 +53,22 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-md-10">
             <div class="d-flex flex-column mb-3">
-                <h6>注文内容</h6>
+                <h6><strong>注文内容</strong></h6>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">商品</th>
-                            <th scope="col">単価(税込)</th>
-                            <th scope="col">個数</th>
-                            <th scope="col">小計</th>
+                            <th style="width: 60%">商品</th>
+                            <th style="width: 20%">単価(税込)</th>
+                            <th style="width: 10%">個数</th>
+                            <th style="width: 10%">小計</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% @order.order_item.each do |order_item| %>
+                        <% @order.order_items.each do |order_item| %>
                             <tr>
-                                <td><%= Item.where(id: order_item.id).name %></td>
+                                <td><%= Item.where(id: order_item.item_id).first.name %></td>
                                 <td><%= order_item.price_including_tax %></td>
                                 <td><%= order_item.amount %></td>
                                 <td><%= order_item.subtotal_price %></td>

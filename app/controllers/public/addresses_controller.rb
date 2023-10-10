@@ -10,6 +10,7 @@ class Public::AddressesController < ApplicationController
             flash[:notice] = "successfully submitted the book!"
         end
         @addresses = Address.all 
+        @address = Address.new
         render :index
     end
 

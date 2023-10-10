@@ -5,15 +5,16 @@ class Order < ApplicationRecord
     
     belongs_to :customer
     has_many :order_items, dependent: :destroy
+    accepts_nested_attributes_for :order_items
     
     # =================================================================================
     # 支払方法(画面表示用)
     # =================================================================================
     def payment_method
-        if payment == 0
-            return payment_i18n[:credit_card]
-        elsif payment == 1
-            return payment_i18n[:transfer]
+        if payment == "credit_card"
+            return Order.payments_i18n[:credit_card]
+        elsif payment == "transfer"
+            return Order.payments_i18n[:transfer]
         end
     end
     
@@ -21,16 +22,16 @@ class Order < ApplicationRecord
     # 注文ステータス(画面表示用)
     # =================================================================================
     def status_method
-        if status == 0
-            return status_i18n[:awaiting_payment]
-        elsif status == 1
-            return status_i18n[:payment_confirmation]
-        elsif status == 2
-            return status_i18n[:under_manufacture]
-        elsif status == 3
-            return status_i18n[:preparing_ship]
-        elsif status == 4
-            return status_i18n[:shipped]
+        if status == "awaiting_payment"
+            return Order.statuses_i18n[:awaiting_payment]
+        elsif status == "payment_confirmation"
+            return Order.statuses_i18n[:payment_confirmation]
+        elsif status == "under_manufacture"
+            return Order.statuses_i18n[:under_manufacture]
+        elsif status == "preparing_ship"
+            return Order.statuses_i18n[:preparing_ship]
+        elsif status == "shipped"
+            return Order.statuses_i18n[:shipped]
         end
     end
     
@@ -38,16 +39,11 @@ class Order < ApplicationRecord
     # 注文個数取得
     # =================================================================================
     def total_amount
-        return Order.joins(:order_items).group(:id).sum(:amount)
-    end
-    
-    # =================================================================================
-    # 注文商品取得(画面表示用)
-    # =================================================================================
-    def items_all
-        order_itmes.each do |item|
-            result += Item.where(id: item.id).name + "\n"
+        result = 0
+        order_items.each do |order_item|
+            result += result + order_item.amount
         end
         return result
     end
+    
 end

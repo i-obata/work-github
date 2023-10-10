@@ -18,10 +18,10 @@
                 <tbody>
                     <% @orders.each do |order| %>
                         <tr>
-                            <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+                            <td><%= link_to order.created_at.strftime('%Y/%m/%d') , admin_order_path(order.id) %></td>
                             <td><%= order.customer.last_name + order.customer.first_name %></td>
                             <td><%= order.total_amount %></td>
-                            <td><%= order.status %></td>
+                            <td><%= order.status_method %></td>
                         <tr>
                     <% end %>
                     <%= paginate @orders %>
