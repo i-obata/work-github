@@ -53,11 +53,7 @@
     <div class="row mb-2">
         <div class="col-md-6"><strong>支払方法</strong></div>
         <div class="col-md-6 align-self-start offset-md-1">
-            <% if @order.payment == "credit_card" %>
-                <%= Order.payments_i18n[:credit_card] %>
-            <% elsif @order.payment == "transfer" %>
-                <% Order.payments_i18n[:transfer] %>
-            <% end %>
+            <%= @order.payment_method %>
         </div>
     </div>
     <div class="row mb-2">

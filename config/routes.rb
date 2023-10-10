@@ -11,21 +11,30 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show]
     
     # customersコントローラー
-    resource :customers, only:[:show, :edit, :update]
-    get "customers/confirm_withdraw" => "public/customers#confirm_withdraw"
-    patch "customers/withdraw"
+    resource :customers, only:[:show, :edit, :update] do
+      collection do
+        get "confirm_withdraw"
+        patch "withdraw"
+      end
+    end
     
     # addressesコントローラー
     resources :addresses, only:[:create, :index, :edit, :update, :destroy]
     
     # cart_itemsコントローラー
-    resources :cart_items, only:[:create, :index, :update, :destroy]
-    delete :cart_items, to: "cart_items#destroy_all"
+    resources :cart_items, only:[:create, :index, :update, :destroy] do
+      collection do
+        delete "destroy_all"
+      end
+    end
     
     # ordersコントローラー
-    resources :orders, only:[:new, :create, :index, :show]
-    post "orders/confirm"
-    get "orders/complete" => "public/orders#complete"
+    resources :orders, only:[:new, :create, :index, :show] do
+      collection do
+        post "confirm"
+        get "complete"
+      end
+    end
   
     #devise（registrationsコントローラー、sessionsコントローラー）
     devise_for :customers, skip: [:passwords],controllers: {

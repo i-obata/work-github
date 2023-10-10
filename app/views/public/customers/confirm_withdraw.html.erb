@@ -10,7 +10,7 @@
             </button>
             <div class="col-sm">
                 <button type="button" class="btn btn-danger">
-                    <%= link_to "退会する", customers_withdraw_path, class: "text-light text-decoration-none" %>
+                    <%= link_to "退会する", withdraw_customers_path,  method: :patch, class: "text-light text-decoration-none", "data-confirm" => "本当に退会してもよろしいでしょうか？" %>
                 </button>
             </div>
         </div>

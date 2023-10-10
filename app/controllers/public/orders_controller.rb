@@ -66,7 +66,7 @@ class Public::OrdersController < ApplicationController
         # cart_itemsを削除
         cart_items.destroy_all
         
-        redirect_to orders_complete_path
+        redirect_to complete_orders_path
     end
     
     # =================================================================================
@@ -74,6 +74,7 @@ class Public::OrdersController < ApplicationController
     # =================================================================================
     def index
         @order = Order.where(customer_id: current_customer.id).order(created_at: :desc)
+        @order = @order.page(params[:page])
     end
 
     # =================================================================================

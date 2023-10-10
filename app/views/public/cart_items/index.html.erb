@@ -6,7 +6,7 @@
         <% if @cart_items.size != 0 %>
             <div class="col text-right">
                 <button type="button" class="btn btn-danger mt-3">
-                    <%= link_to "カートを空にする", "/cart_items", class: "text-light text-decoration-none", method: :delete, "data-confirm" => "Do you really want to delete it?"  %>
+                    <%= link_to "カートを空にする", destroy_all_cart_items_path, class: "text-light text-decoration-none", method: :delete, "data-confirm" => "Do you really want to delete it?"  %>
                 </button>
             </div>
         <% end %>
