@@ -34,6 +34,10 @@ class Public::SessionsController < Devise::SessionsController
       redirect_to new_customer_registration_path
     end
   end
+  
+  def after_sign_in_path_for(resource)
+    root_path
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
